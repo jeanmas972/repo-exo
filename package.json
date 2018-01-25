@@ -28,6 +28,7 @@
     "graphql": "^0.12.3",
     "graphql-date": "^1.0.3",
     "graphql-tools": "^2.18.0",
+    "jsonwebtoken": "^8.1.1",
     "prettier": "^1.10.2"
   },
   "devDependencies": {
