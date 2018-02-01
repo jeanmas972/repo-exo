@@ -1,6 +1,7 @@
 import React  from 'react';
 import {  AppRegistry, UIManager } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import { store, client } from './src/store';
@@ -8,7 +9,8 @@ import { colors } from './src/utils/constants';
 
 import Welcome from './src/components/Welcome';
 
-import HomeScreen from './src/screens/HomeScreen';
+// import HomeScreen from './src/screens/HomeScreen';
+import AppNavigation from './src/navigations';
 
 if (UIManager.setLayoutAnimationEnabledExperimental){
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -17,12 +19,14 @@ if (UIManager.setLayoutAnimationEnabledExperimental){
 export default class App extends React.Component {
   render() {
     return (
-      <ApolloProvider store={store} client={client}>
-        <ThemeProvider theme={colors}>
-          <HomeScreen />
-        </ThemeProvider>
-      </ApolloProvider>
-    )
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <ThemeProvider theme={colors}>
+            <AppNavigation />
+          </ThemeProvider>
+        </ApolloProvider>
+      </Provider>
+    );
   }
 }
 
