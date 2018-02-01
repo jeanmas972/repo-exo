@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@appandflow/touchable": "^1.2.2",
     "apollo-cache-inmemory": "^1.1.5",
     "apollo-client": "^1.9.3",
     "apollo-link": "^1.0.7",
