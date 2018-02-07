@@ -60,13 +60,13 @@ const ButtonLoginText = styled.Text`
 `;
 
 const initialState = {
-  showSignup: true,
+  showSignup: false,
   showLogin: false
 }
 
 
 class AuthenticationScreen extends Component {
-  state= initialState;
+  state = initialState;
 
   _onShowSignupPress = () => this.setState({ showSignup: true });
 

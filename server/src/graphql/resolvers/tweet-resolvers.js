@@ -4,7 +4,7 @@ import { requireAuth } from '../../services/auth';
 export default {
   getTweet: async (_, { _id }, { user }) => {
     try {
-      //  await requireAuth(user);
+      await requireAuth(user);
       return Tweet.findById(_id);
     } catch (error) {
       throw error;
@@ -12,7 +12,7 @@ export default {
   },
   getTweets: async (_, args, { user }) => {
     try {
-      //  await requireAuth(user);
+      await requireAuth(user);
       return Tweet.find({}).sort({ createdAt: -1 });
     } catch (error) {
       throw error;
