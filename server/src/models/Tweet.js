@@ -4,7 +4,7 @@ const TweetSchema = new Schema(
   {
     text: {
       type: String,
-      minlength: [5, 'Text need yo be longer'],
+      minlength: [5, 'Text need to be longer'],
       maxlength: [144, 'Text too long'],
     },
     user: {
