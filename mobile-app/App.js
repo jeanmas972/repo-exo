@@ -25,6 +25,7 @@ export default class App extends React.Component {
   }
 
   componentWillMount(){
+    // AsyncStorage.removeItem("@twitteryoutubeclone");
     this._checkIfToken();
   }
 
