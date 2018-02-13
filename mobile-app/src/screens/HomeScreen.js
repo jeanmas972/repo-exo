@@ -11,6 +11,7 @@ import { getUserInfo } from '../actions/user';
 
 import GET_TWEETS_QUERY from '../graphql/queries/getTweets';
 import ME_QUERY from '../graphql/queries/me';
+import TWEET_ADDED_SUBSCRIPTIONS from '../graphql/subscriptions/tweetAdded';
 
 
 const Root = styled.View`
@@ -20,6 +21,27 @@ const Root = styled.View`
 
 
 class HomeScreen extends Component {
+
+  componentWillMount(){
+    this.props.data.subscribeToMore({
+      document: TWEET_ADDED_SUBSCRIPTIONS,
+      updateQuery: (prev, { subscriptionData }) => {
+        if(!subscriptionData.data){
+          return prev;
+        }
+
+        const newTweet = subscriptionData.data.tweetAdded;
+
+        if(!prev.getTweets.find(t => t._id === newTweet._id)){
+          return {
+            ...prev,
+            getTweets: [{ ...newTweet}, ...prev.getTweets]
+          }
+        }
+        return prev;
+      }
+    });
+  }
 
   componentDidMount(){
     this._getUserInfo();
