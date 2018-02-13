@@ -22,7 +22,9 @@ app.use(
   '/graphiql',
   graphiqlExpress({
     endpointURL: constants.GRAPHQL_PATH,
-    subscriptionsEndpoint: `ws://localhost:${constants.PORT}${constants.SUBSCRIPTIONS_PATH}`,
+    subscriptionsEndpoint: `ws://localhost:${constants.PORT}${
+      constants.SUBSCRIPTIONS_PATH
+    }`,
   }),
 );
 
@@ -48,14 +50,18 @@ graphQLServer.listen(constants.PORT, err => {
   if (err) {
     console.error(err);
   } else {
-    new SubscriptionServer({ // eslint-disable-line
-      schema,
-      execute,
-      subscribe
-    },{
-      server: graphQLServer,
-      path: constants.SUBSCRIPTIONS_PATH
-    })
+    new SubscriptionServer(
+      {
+        // eslint-disable-line
+        schema,
+        execute,
+        subscribe,
+      },
+      {
+        server: graphQLServer,
+        path: constants.SUBSCRIPTIONS_PATH,
+      },
+    );
     console.log(`App listen to port: ${constants.PORT}`);
   }
 });

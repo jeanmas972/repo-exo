@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import constants from './constants';
 import { decodeToken } from '../services/auth';
 
-
 async function auth(req, res, next) {
   try {
     const token = req.headers.authorization;
@@ -23,5 +22,4 @@ async function auth(req, res, next) {
 export default app => {
   app.use(bodyParser.json());
   app.use(auth);
-
 };
