@@ -31,7 +31,7 @@ const CardContentText = styled.Text`
 `;
 
 
-function FeedCard({ text, user, createdAt, favoriteCount, favorite }) {
+function FeedCard({ text, user, createdAt, favoriteCount, favorite, isFavorited }) {
   return(
     <Root >
       <FeedCardHeader {...user} createdAt={createdAt} />
@@ -40,7 +40,11 @@ function FeedCard({ text, user, createdAt, favoriteCount, favorite }) {
           {text}
         </CardContentText>
       </CardContentContainer>
-      <FeedCardBottom favoriteCount={favoriteCount} onFavoritePress={favorite} />
+      <FeedCardBottom
+        isFavorited={isFavorited}
+        favoriteCount={favoriteCount}
+        onFavoritePress={favorite}
+      />
     </Root>
   )
 }

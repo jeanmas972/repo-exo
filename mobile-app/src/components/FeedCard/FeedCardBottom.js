@@ -29,9 +29,8 @@ const ButtonText = styled.Text`
   color: ${props => props.theme.LIGHT_GRAY};
 `;
 
-const isFavorited = false;
 
-function FeedCardBottom({ favoriteCount, onFavoritePress }) {
+function FeedCardBottom({ favoriteCount, onFavoritePress, isFavorited }) {
   return(
     <Root>
       <Button>
