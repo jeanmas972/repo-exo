@@ -9,6 +9,9 @@ import { colors } from '../utils/constants';
 import CREATE_TWEET_MUTATION from '../graphql/mutations/createTweet';
 import GET_TWEETS_QUERY from '../graphql/queries/getTweets';
 
+import GET_USER_TWEETS_QUERY from '../graphql/queries/getUserTweets';
+
+
 
 const Root = styled.View`
   backgroundColor: ${props => props.theme.WHITE};
@@ -79,7 +82,7 @@ class NewTweetScreen extends Component {
 
   _onChangeText = text => this.setState({ text });
 
-  _onCreateTweetPress =async() => {
+  _onCreateTweetPress = async() => {
 
     const { user } = this.props;
 
@@ -106,11 +109,21 @@ class NewTweetScreen extends Component {
         },
       },
       update: (store, { data: { createTweet } }) => {
-        const data = store.readQuery({ query: GET_TWEETS_QUERY});
-        if (!data.getTweets.find(t => t._id === createTweet._id)) {
-          store.writeQuery({ query: GET_TWEETS_QUERY, data: { getTweets: [{ ...createTweet}, ...data.getTweets]}})
+
+        if(store.readQuery({ query: GET_TWEETS_QUERY})){
+          const data = store.readQuery({ query: GET_TWEETS_QUERY});
+          if (!data.getTweets.find(t => t._id === createTweet._id)) {
+            store.writeQuery({ query: GET_TWEETS_QUERY, data: { getTweets: [{ ...createTweet}, ...data.getTweets]}})
+          }
+        }
+        if(store.readQuery({ query: GET_USER_TWEETS_QUERY})){
+          const data = store.readQuery({ query: GET_USER_TWEETS_QUERY});
+          if (!data.getUserTweets.find(t => t._id === createTweet._id)) {
+            store.writeQuery({ query: GET_USER_TWEETS_QUERY, data: { getUserTweets: [{ ...createTweet}, ...data.getUserTweets]}})
+          }
         }
       }
+
     });
     Keyboard.dismiss();
     this.props.navigation.goBack(null);
