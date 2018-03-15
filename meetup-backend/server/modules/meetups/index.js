@@ -1,7 +1,7 @@
-// import Meetup from './model';
+import Meetup from './model';
 import MeetupRoutes from './routes';
 
 export {
   MeetupRoutes,
-  // Meetup,
+  Meetup,
 };
